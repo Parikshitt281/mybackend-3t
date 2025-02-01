@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages{
+        stage('pull'){
+            steps{
+                 git branch: 'main', url: 'https://github.com/Parikshitt281/mybackend-3t.git'
+            } 
+        }
+        stage('build'){
+            steps{
+                 sh 'mvn clean package'
+            }
+        }
+       stage('deploy'){
+            steps{
+                 sh '''
+                 docker build -t . parikshitt281/backend:latest
+                 docker push parikshitt281/backend:latest
+                 docker rmi parikshitt281/backend:latest
+                 '''
+            }
+        }
+   }
+}
