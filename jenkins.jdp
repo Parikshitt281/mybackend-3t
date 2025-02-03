@@ -14,7 +14,7 @@ pipeline {
        stage('deploy'){
             steps{
                  sh '''
-                 docker build -t . parikshitt281/backend:latest
+                 docker build -t parikshitt281/backend:latest .
                  docker push parikshitt281/backend:latest
                  docker rmi parikshitt281/backend:latest
                  kubectl apply -f backdeployment.yml
