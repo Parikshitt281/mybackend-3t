@@ -18,6 +18,7 @@ pipeline {
                  docker push parikshitt281/backend:latest
                  docker rmi parikshitt281/backend:latest
                  kubectl apply -f backdeployment.yml
+                 kubectl apply -f service.yml
                  '''
             }
         }
